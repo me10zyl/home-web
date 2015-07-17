@@ -1,9 +1,69 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>net.xicp.zyl-me</groupId>
-  <artifactId>home</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging>
-  <name>Home Page</name>
-  <description>ZyL's Reference Page</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.xicp.zyl-me</groupId>
+	<artifactId>home</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>Home Page</name>
+	<description>ZyL's Reference Page</description>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>4.1.7.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+	</dependencies>
+	<repositories>
+		<repository>
+			<id>sunyuki-private-repo</id>
+			<url>http://192.168.3.5:8081/nexus/content/groups/public/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>io.spring.repo.maven.release</id>
+			<url>http://repo.spring.io/release/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<mvnProp>application-dev.properties</mvnProp>
+			</properties>
+			<activation>
+				<activeByDefault></activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>production</id>
+			<properties>
+				<mvnProp>application.properties</mvnProp>
+			</properties>
+		</profile>
+	</profiles>
 </project>
