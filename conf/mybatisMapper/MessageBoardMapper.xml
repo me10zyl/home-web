@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.xicp.zyl_me.MessageBoardMapper">
+  <select id="selectMessageBoardById"  resultMap="messageBoard">
+    select email,content as content1 from message_board where id = #{id}
+  </select>
+  <select id="selectMessaBoradAll" resultType="net.xicp.zyl_me.entity.MessageBoard">
+  	select id,email,name, content as content1, time from message_board;
+  </select>
+  <resultMap type="net.xicp.zyl_me.entity.MessageBoard" id="messageBoard"><!-- 可写可不写 -->
+  	<id property="id" column="id"/>
+  	<result property="email" column="email"/>
+  	<result property="content" column="content"/>
+  </resultMap>
+</mapper>
