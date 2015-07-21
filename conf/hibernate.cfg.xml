@@ -3,10 +3,11 @@
 		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 		"classpath://org/hibernate/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory name="sessionFactory">
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <session-factory>
+      <!-- <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/zyl_me</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> -->
+        <mapping class="net.xicp.zyl_me.dal.entity.MessageBoard"/>
     </session-factory>
 </hibernate-configuration>

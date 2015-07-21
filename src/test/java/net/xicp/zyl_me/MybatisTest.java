@@ -1,10 +1,10 @@
-package home;
+package net.xicp.zyl_me;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import net.xicp.zyl_me.entity.MessageBoard;
+import net.xicp.zyl_me.dal.entity.MessageBoard;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
