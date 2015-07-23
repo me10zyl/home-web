@@ -1,0 +1,31 @@
+#header {
+	text-align: center;
+	z-index: 10;
+	position: relative;
+}
+#body{
+	position:relative;
+	padding-bottom: 1px;
+}
+#footer{
+	width:100%;
+	text-align:center;
+	position: absolute;
+	bottom: 0;
+}
+#message{
+	color:black;
+	font-size:12px;
+}
+#messageBtn{
+	text-align: right;
+	padding-right:100px;
+	padding-bottom:20px;
+	color:RED;
+	font-size:30px;
+	font-family: 微软雅黑;
+}
+
+#messageBoard li{
+    border: none;
+}

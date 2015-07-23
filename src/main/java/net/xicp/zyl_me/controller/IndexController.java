@@ -9,6 +9,9 @@ import java.util.Properties;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import net.xicp.zyl_me.dal.dao.MessageBoardDAO;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller("/")
 public class IndexController {
+	@Autowired
+	MessageBoardDAO dao;
+
 	@RequestMapping("/")
 	public String getViewCount(HttpServletRequest request,Model model) {
 		FileOutputStream out = null;
@@ -23,7 +29,7 @@ public class IndexController {
 		int viewCount = 0;
 		try {
 			ServletContext servletContext = request.getServletContext();
-			String realPath = servletContext.getRealPath("/WEB-INF/application.properties");
+			String realPath = servletContext.getRealPath("/WEB-INF/viewcount.properties");
 			Properties properties = new Properties();
 			in = new FileInputStream(realPath);
 			properties.load(in);
@@ -56,6 +62,8 @@ public class IndexController {
 				}
 			}
 		}
+
+		model.addAttribute("totalPage",dao.getTotalPage());
 		return "index";
 	}
 }

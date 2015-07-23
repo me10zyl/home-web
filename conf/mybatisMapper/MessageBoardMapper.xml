@@ -9,6 +9,9 @@
 	<select id="selectMessaBoradAll" resultType="net.xicp.zyl_me.dal.entity.MessageBoard">
 		select id,email,name, content, time from message_board;
 	</select>
+	<select id="selectMessageBoardCount" resultType="int">
+		select count(*) from message_board;
+	</select>
 	<resultMap type="net.xicp.zyl_me.dal.entity.MessageBoard" id="messageBoard"><!--
 			除了重命名列，完全不用写啦 -->
 		<id property="id" column="id" />
