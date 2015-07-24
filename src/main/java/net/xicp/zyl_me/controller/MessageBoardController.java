@@ -1,5 +1,6 @@
 package net.xicp.zyl_me.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import net.xicp.zyl_me.bal.entity.Status;
@@ -25,24 +26,29 @@ public class MessageBoardController {
 	@RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
 	public List<MessageBoard> getMessageBoardByPage(@PathVariable("page") int currentPage) {
 		List<MessageBoard> messageBoards = messageBoardDAO.listByPage(currentPage);
+//		Collections.reverse(messageBoards);
+	/*	for (int i = 0; i < messageBoards.size() / 2; i++) {
+			MessageBoard tmp;
+			tmp = messageBoards.get(i);
+			messageBoards.set(i, messageBoards.get(messageBoards.size() - 1 - i));
+			messageBoards.set(messageBoards.size() - 1 - i, tmp);
+		}*/
 		return messageBoards;
 	}
+
 	private MessageBoard oldMessageBoard;
+
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public Status saveMessageBoard(@RequestBody MessageBoard messageBoard)
-	{
+	public Status saveMessageBoard(@RequestBody MessageBoard messageBoard) {
 		Status status = new Status();
 		status.setSuccess(false);
-		if(messageBoard.getName()== null || messageBoard.getName().equals(""))
-		{
+		if (messageBoard.getName() == null || messageBoard.getName().equals("")) {
 			status.setMessage("用户名为空");
 			return status;
-		}else if(messageBoard.getContent() == null || messageBoard.getContent().equals(""))
-		{
+		} else if (messageBoard.getContent() == null || messageBoard.getContent().equals("")) {
 			status.setMessage("留言内容为空");
 			return status;
-		}else if(oldMessageBoard != null && messageBoard.equals(oldMessageBoard))
-		{
+		} else if (oldMessageBoard != null && messageBoard.equals(oldMessageBoard)) {
 			status.setMessage("处理中, 请不要重复提交");
 			return status;
 		}
@@ -54,7 +60,7 @@ public class MessageBoardController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			status.setSuccess(false);
-			status.setMessage("留言失败:"+e.getMessage());
+			status.setMessage("留言失败:" + e.getMessage());
 			e.printStackTrace();
 		}
 		return status;

@@ -48,7 +48,7 @@ public class MessageBoardDAO extends DataAccessObject<MessageBoard> {
 	public List<MessageBoard> listByPage(int currentPage) {
 		List<MessageBoard> messageBoards = new ArrayList<MessageBoard>();
 		Session session = getSession();
-		Query query = session.createQuery("from MessageBoard");
+		Query query = session.createQuery("from MessageBoard order by id desc");
 //		int endIndex = currentPage * Page.pageSize;
 //		Integer maxResults = getTotalCount();
 		query.setMaxResults(Page.pageSize);
